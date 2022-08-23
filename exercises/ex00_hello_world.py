@@ -1,4 +1,4 @@
 """My first program for COMP 110"""
 _author_= 730572167
 print("Hello World")
-print("Yo Yo Yo, what's good")
+
