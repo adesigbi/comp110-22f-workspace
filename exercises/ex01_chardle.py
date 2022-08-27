@@ -22,9 +22,9 @@ if chardle_character == chardle_word [3]:
 if chardle_character == chardle_word [4]:
     print(chardle_character + " found at index 4") 
     instances_of_character = instances_of_character + 1 
-else:
-    print("No instances of " + chardle_character + " found in " + chardle_word)  
-if instances_of_character != 0:
-    instances_of_character = str(instances_of_character)
-    print(instances_of_character + " instances of " + chardle_character + " were found in " + chardle_word)
-  
+if instances_of_character == 0:
+    print("No instances of " + chardle_character + " found in " + chardle_word)
+if instances_of_character == 1:
+    print(str(instances_of_character) + " instance of " + chardle_character + " was found in " + chardle_word)
+if instances_of_character > 1:
+    print(str(instances_of_character) + " instances of " + chardle_character + " were found in " + chardle_word)    
