@@ -1,7 +1,7 @@
 """EX01 - Chardle - A cute step toward Wordle."""
 __author__ = "730572167"
 instances_of_character: int = 0
-chardle_word: str = input("Enter a 5-character word: ")
+chardle_word: str = input("Enter a 5-character word: ") 
 if len(chardle_word) != 5:
     print("Error: Word must contain 5 characters")
     exit()
