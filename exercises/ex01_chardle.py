@@ -6,6 +6,9 @@ if len(chardle_word) != 5:
     print("Error: Word must contain 5 characters")
     exit()
 chardle_character: str= input("Enter a single character: ")
+if len(chardle_character) != 1:
+    print("Error: Character must be a single character.")
+    exit()
 print("Searching for " + chardle_character + " in " + chardle_word)
 if chardle_character == chardle_word [0]:
     print(chardle_character + " found at index 0")
