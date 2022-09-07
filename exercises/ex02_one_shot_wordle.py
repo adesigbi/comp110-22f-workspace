@@ -1,5 +1,5 @@
-"""One shot world game"""
-__author__ =730572167
+"""One shot world game."""
+__author__ = "730572167"
 
 secret_word: str = "python"
 number_of_letters: int = len(secret_word)
@@ -17,9 +17,9 @@ emoji_string: str = ""
 letter_in_word: bool = False
 i1: int = 0
 
-#does the concatination
+# does the concatination
 while i < len(secret_word):
-    #checks to see if the letter the user put is in the secret word
+    # checks to see if the letter the user put is in the secret word
     while i1 < len(secret_word):
         if users_word[i] == secret_word[i1]:
             letter_in_word = True
@@ -39,4 +39,3 @@ if users_word == secret_word:
     print("Woo! You got it!")
 else:
     print("Not quite. Play again soon!")
-
