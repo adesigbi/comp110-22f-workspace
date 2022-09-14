@@ -14,7 +14,7 @@ def contains_char(secret: str, character: str) -> bool:
 
 
 def emojified(guess: str, secret: str) -> str:
-    """Uses contains_char to see what spot a character is found."""
+    """Uses the contains_char function to concatenate wordle boxes."""
     assert len(guess) == len(secret)
     i: int = 0 
     WHITE_BOX: str = "\U00002B1C"
@@ -33,7 +33,7 @@ def emojified(guess: str, secret: str) -> str:
 
 
 def input_guess(expected_length: int) -> str:
-    """Ask you to type a letter with the expected lenght of characters."""
+    """Returns guess when it fufills the character number requirement."""
     guess: str = input(f"Enter a {expected_length} character word: ")
     while len(guess) != expected_length:
         guess = input(f"That wasn't {expected_length} chars! Try again: ")
