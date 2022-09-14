@@ -1,8 +1,9 @@
 """Structured wordle things."""
-__author__ = 730572167
+__author__ = "730572167"
 
-def contains_char (secret: str, character: str) -> bool:
-    """"Lets know if your character is in the string."""
+
+def contains_char(secret: str, character: str) -> bool:
+    """Lets know if your character is in the string."""
     assert len(character) == 1
     i: int = 0 
     while i < len(secret):
@@ -11,11 +12,11 @@ def contains_char (secret: str, character: str) -> bool:
         i += 1
     return False    
 
-def emojified (guess: str, secret: str) -> str:
+
+def emojified(guess: str, secret: str) -> str:
     """Uses contains_char to see what spot a character is found."""
     assert len(guess) == len(secret)
     i: int = 0 
-    i1: int = 0
     WHITE_BOX: str = "\U00002B1C"
     GREEN_BOX: str = "\U0001F7E9"
     YELLOW_BOX: str = "\U0001F7E8"
@@ -31,14 +32,13 @@ def emojified (guess: str, secret: str) -> str:
     return them_boxes
 
 
-
-
-def input_guess (expected_length: int) -> str:
+def input_guess(expected_length: int) -> str:
     """Ask you to type a letter with the expected lenght of characters."""
     guess: str = input(f"Enter a {expected_length} character word: ")
     while len(guess) != expected_length:
         guess = input(f"That wasn't {expected_length} chars! Try again: ")
     return guess
+
 
 def main() -> None:
     """The entrypoint of the program and main game loop."""
