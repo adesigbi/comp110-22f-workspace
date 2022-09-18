@@ -2,8 +2,9 @@ __author__ = "730572167"
 
 """Reproducing abstractions with lists."""
 
+
 def all(xs: list[int], x = int) -> bool:
-    """Finds if a list is made completly of a given interger"""
+    """Finds if a list is made completly of a given integer."""
     i: int = 0
     while i < len(xs):
         if xs[i] != x:
@@ -13,7 +14,7 @@ def all(xs: list[int], x = int) -> bool:
 
 
 def max(input: list[int]) -> int:
-    """Finds the largest interger in a list"""
+    """Finds the largest interger in a list."""
     if len(input) == 0:
         raise ValueError("max() arg is an empty list")
     greatest_index: int = 0 
@@ -28,7 +29,7 @@ def max(input: list[int]) -> int:
 
 
 def is_equal(xs: list[int], ys: list[int]) -> bool:
-    """Sees if two lists are identical"""
+    """Sees if two lists are identical."""
     i: int = 0 
     if len(xs) != len(ys):
         return False
@@ -37,10 +38,3 @@ def is_equal(xs: list[int], ys: list[int]) -> bool:
             return False
         i += 1
     return True
-
-        
-
-
-
-
-
