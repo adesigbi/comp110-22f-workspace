@@ -5,8 +5,7 @@ __author__ = "730572167"
 
 def all(xs: list[int], x: int) -> bool:
     """Finds if a list is made completly of a given integer."""
-    if len(xs) == 0:
-        return False
+    assert len(xs) != 0
     i: int = 0
     while i < len(xs):
         if xs[i] != x:
