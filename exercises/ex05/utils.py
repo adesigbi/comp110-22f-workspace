@@ -1,4 +1,4 @@
-"""Utils comp exercise"""
+"""A bunch of list related functions."""
 
 __author__ = "730572167"
 
@@ -35,6 +35,7 @@ def concat(list_1: list[int], list_2: list[int]) -> list:
 
 
 def sub(a_list: list[int], start_i: int, end_i: int) -> list:
+    """Given a start and ending index, shows a non-inclusive 'sublist'."""
     new_list: list[int] = list()
     i: int = start_i
     
@@ -49,4 +50,3 @@ def sub(a_list: list[int], start_i: int, end_i: int) -> list:
         new_list.append(a_list[i])
         i += 1
     return new_list
-
