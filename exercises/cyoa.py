@@ -83,7 +83,7 @@ def stop_game() -> None:
 def boat1() -> None:
     """Actions happening given the user picks the first boat."""
     global points 
-    item_list1: list[str] = ["first aid kit", "rope", "compass","army rations", "shaving mirror", "tent", "map of the atlantic", "plastic bags"]
+    item_list1: list[str] = ["first aid kit", "battery powered radio", "compass","army rations", "shaving mirror", "tent", "matches", "plastic bags"]
     input("\nIn a rush, you board the first life raft. And by rummaging through the back of the raft, you find the following items\n")
     for i in item_list1:
         print(i)
@@ -110,83 +110,93 @@ def boat1() -> None:
             print(f"\n\n========Game Over=========\n\nIn your experience, you earned {points} points.")
             return
         if rain_response == "protect from rain":
-            input("You use your tent to build shelter do so just in the nick of time. The storm reaches its head when you head inside.\n")
-            input("You wake up tired but alive\n\n")
+            input("You use your tent to build shelter and do so just in the nick of time. The storm reaches its head when you head inside.\nYou would have surely died of hypothermia if you had decided to sleep exposed to the elements. ")
+            input("You wake up tired but alive. ")
             points += 5
-            input(f"Day 1 Completed: Congradulations {player}, you have earned 5 more points. Point total is now equal to {points}\n")
+            input(f"\nDay 1 Completed: Congradulations {player}, you have earned 5 more points. Point total is now equal to {points}\n")
             input("\n =====The Next Day====\n")
-            input("You start to get thirsty and happen to have expert meteorological skills that allows you to be sure that rain will definently come again in 2 days.\n"
-                "You also know that it takes a person roughly 3 days to die of dehydration. Given this infromation, you decide you need to create a water collection system for rainfall.")
-            if word_in_list("plastic bags", item_list1) == False:
-                input("Unfortunatly, you very quickly realize that you do not have the materials to collect water.\n")
-                input("The next day, out of desperation, you take in a mouthfull of sea water. You promptly vomit your insides out. And die within the hour.")
+            input("You start to get thirsty and happen to have expert meteorological skills that allow you to be sure that the next rainfall is due for tonight,\n"
+                "and that the next rainfall after that is due in 7 days. You also know that it takes a person roughly 3 days to die of dehydration.\nGiven this infromation, you understand that now is your ownly chance to make an effective water collection system.")
+            input("Here's a reminder of your list:\n")
+            for i in item_list1:
+                print(i)
+            water_collector: str = input("\nWhat item from your list do you want to user to collect the water tonight?: ")
+            water_collector = word_finder(water_collector, item_list1)
+            if water_collector != "plastic bags":
+                input(f"You try to muster together a water collection system with your {water_collector}. You then get inside of your tent and go off to sleep.\n")
+                input("In the morning, you see that your system has completely failed")
+                input("\n=====Day 2=====\n")
+                input("The thirst and dissapointment from your past actions starts settling in.")
+                input("\n=====Day 3=====\n")
+                input("You understand your fate and in vain, take in mouthfulls of ocean water, hoping that what all those 'scientist' say about osmosis and salt was wrong. \nYou promptly vomit and within the hour, start to hallucinate.")
+                input("\n====Day 4=====\n")
+                input("You die of dehydration. That is very sad for you :(")
                 print(f"\n\n========Game Over=========\n\nIn your experience, you earned {points} points.")
                 return
-            if word_in_list("plastic bags", item_list1) == True:
-                input("Here's a reminder of your list: ")
-                for i in item_list1:
-                    print(i)
-                water_collector: str = input("\nWhat item from your list do you want to user to collect the water?: ")
-                water_collector = word_finder(water_collector, item_list1)
-                if water_collector != "plastic bags":
-                    input(f"You try to muster together a water collection system with your {water_collector}. You then get inside of your tent and go off to sleep.\n")
-                    input("In the morning, you see that your system has completely failed")
-                    input("The next day, you die of dehydration.\n")
-                    input("That is very sad for you :(")
+            if water_collector == "plastic bags":
+                points += 5
+                input("You set up your system with the plastic bags and it seems like it may work. You get inside your tent and then go off to sleep.\n")
+                input("In the morning, you see 5 bags full of water. After rejoicing you get back to business. ")
+                input(f"\nCongratulations {player}, you have successfully passed yet another day. You have 5 more points. Your total is now {points}\n")
+                input("\n======Day 4=======\n")
+                if word_in_list("army rations", item_list1) == False:
+                    input("Oh no, it looks like there is no food in the items that you originally chose. \n")
+                    input("\n=====Day 5=====\n")
+                    input("You have gone 5 days without food and you think that the hunger is subsiding. \n"
+                    "You continue your daily rituals and make sure your water collection system is still working well.")
+                    input("\n=====Day 6=====\n")
+                    input("You are craving something to eat again. Delirious and disappointed in your past decisions, you try catching fish. \n"
+                    "In an attempt to grab a salmon with your bare hands, you fall overboard.")
+                    input("Sorry, you died from drowning")
                     print(f"\n\n========Game Over=========\n\nIn your experience, you earned {points} points.")
-                    return
-                if water_collector == "plastic bags":
-                    points += 5
-                    input("You set up your system with the plastic bags and it seems like it may work. You get inside your tent and then go off to sleep.\n")
-                    input("In the morning, you see 5 bags full of water. After rejoicing you get back to business. ")
-                    input(f"\nCongratulations {player}, you have successfully passed yet another day. You have 5 more points. Your total is now {points}\n")
-                    input("\n======Day 4=======\n")
-                    if word_in_list("army rations", item_list1) == False:
-                        input("Oh no, it looks like there is no food in the items that you originally chose. \n")
-                        input("\n=====Day 5=====\n")
-                        input("You have gone 5 days without food and you think that the hunger is subsiding. \n"
-                        "You continue your daily rituals and make sure your water collection system is still working well.")
-                        input("\n=====Day 6=====\n")
-                        input("You are craving something to eat again. Delirious and disappointed in your past decisions, you try catching fish. \n"
-                        "In an attempt to grab a salmon with your bare hands, you fall overboard.")
-                        input("Sorry, you died from drowning")
-                        print(f"\n\n========Game Over=========\n\nIn your experience, you earned {points} points.")
-                        return 
-                    if word_in_list("army rations", item_list1) == True: 
-                        input("You start tearing into your army rations and continue your rituals from last the day before")
-                        input("\n=====Day 5=====\n")
-                        input("Life is good, and you’re. Maybe you could be a sea man forever you think. ")
-                        input("\n=====Day 9=====\n")
-                        input("On the horizon you see a passing ship. You realize that this may be one of your only opportunities to get back home. ")
-                        input("You yell for a bit trying to get the ship's attention, and then realize that it is far to way to here you. You need to use one of the items on you.")
-                        input("Here’s a reminder of the your list: ")
-                        for i in item_list1:
-                            print(i)
-                        saving_item: str = input("\nWhich item do you chose to use?: ")
-                        saving_item = word_finder(saving_item, item_list1)
-                        if saving_item != "shaving mirror":
-                            input(f"You try all the moves in the playbook to make {saving_item} get the ships attention. But nothing works. The ship slips out from view from the horizon")
-                            input("\n====Some time in the future====\n")
-                            scenario: int == randint(1, 4)
-                            if scenario == 1:
-                                input("You have become accustomed with your life at sea, and you live your best seafaring life. You figured out how to catch fish and turtles for food. \n"
-                                "You even have some heads from the turtle shells.")
-                                input("You die at the age of 60, having never seen a human being again. ")
-                                input("Did you win? Most wouldn't say so. But in your heart, on your death raft aged and wise, you thought surely I did win. ")
-                            if scenario == 2:
-                                input("At some point you got eaten by sharks. You can only go drifting around the atlantic ocean scratch free for so long.")
-                            if scenario == 3:
-                                input("On your 23rd day you slept and walked off of the boat. You died of drowning ")
-                            if scenario == 4:
-                                input("On day 103, you caught sight of an island. You mustered all your strength to make it to shore. And after stumbling around the sandy beach and \n"
-                                "rejoicing for your first sighting of trees and stable ground in months, you were promptly killed by an archer from the island who mistook you for an animal.\n")
-                            
-
-
-            
-
-
-  
+                    return 
+                if word_in_list("army rations", item_list1) == True: 
+                    input("You start tearing into your army rations and begin to create rituals to mantian your suvrival.\n"
+                    "You wake in the morning, pack up your tent to conserve space, have the breakfast of chapions that is canned meats and stale bread,\n"
+                    "tinker with your objects on your person to try to make tools, eat dinner a of canned beans and crackers, set up up your tent again,\n"
+                    "sleep, and do the same thing over again. You have all your basic necessities covered.")
+                    input("\n=====Day 5=====\n")
+                    input("Life isn't amazing, but it's managable. Maybe you could be a seaman forever you think. ")
+                    input("\n=====Day 9=====\n")
+                    input("On the horizon you see a passing ship. You realize that this may be one of your only opportunities to get back home. ")
+                    input("You yell for a bit trying to get the ship's attention, and then realize that the ship is far too distanct for the people on it to hear you.\nYou need to use one of the items on you to signal them.")
+                    input("Here’s a reminder of the your list:\n")
+                    for i in item_list1:
+                        print(i)
+                    saving_item: str = input("\nWhich item do you choose to use?: ")
+                    saving_item = word_finder(saving_item, item_list1)
+                    if saving_item != "shaving mirror":
+                        input(f"You try all the moves in the playbook to make your {saving_item} get the ships attention. But nothing works. The ship slips out from view on the horizon. ")
+                        input("\n====Some time in the future====\n")
+                        ending: int = randint(1, 4)
+                        if ending == 1:
+                            input("You have become accustomed with your life at sea, and you live your best seafaring life. You figured out how to catch fish and turtles for food. \n"
+                            "You even have some heads from the turtle shells.")
+                            input("You die at the age of 60, having never seen a human being again. ")
+                            input("Did you win? Most wouldn't say so. But in your heart, on your death raft aged and wise, you thought 'surely I did.'")
+                            input("You were never saved")
+                        if ending == 2:
+                            input("On day 14, you fought a losing battle with a hord of sharks. In the throws of action with the sea creatures, you thought that it was probably niave to think\n"
+                            "that you'd survive months on the atlantic scratch free. That would require some great stroke of luck. Another boat came back around on the 24th day.")
+                            input("You were never saved")
+                        if ending == 3:
+                            input("On the 24th day, another boat would come by, this time within yellig distance of your raft. Unfortunately, on your 23rd day you slept and walked off of the raft.\n")
+                            input("You were never saved")
+                        if ending == 4:
+                            input("On day 103, you caught sight of an island. You mustered all your strength to make it to shore. And after stumbling around the sandy beach and \n"
+                            "rejoicing for your first sighting of trees and stable ground in months, you were promptly killed by an archer from the island who mistook you for an animal.\n")
+                            input("You were never saved")
+                    if saving_item == "shaving mirror":
+                        points += 5
+                        input("You use the mirror to try to reflect the sun in the direction of the boat and by some miracle the small ship on the horizon becomes bigger and bigger,\n"
+                        "until it is close enough for you to board it.")
+                        input("You are saved")
+                        input("You will tell your accolades to family and strangers alike and sue the cruise line involved in the sinking of your vessel, gaining a fortune in the process.")
+                        input("Though a pretty unfortunate event happened to you, you consider yourself a pretty lucky person to have made the right decisions to survive until you found safety.")
+                        input(f"Congratulations {player}, you earned 5 more points for getting saved. Your point total now meets the threshold to win the game!!!!")
+                    print(f"\n\n========Game Over=========\n\nIn your experience, you earned {points} points.")
+                    
+                        
 def main() -> None:
     greet()
     #present the user with three options 
