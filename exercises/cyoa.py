@@ -7,6 +7,7 @@ from random import randint
 points: int = 0 
 player: str = ""
 playing: bool = True
+SHIP_EMOJI: str = "\U0001F6F3"
 
 
 def valid_word2(userword: str, option1: str, option2: str) -> str:
@@ -74,7 +75,12 @@ def greet() -> None:
     global player
     #add emojis to welcome message
     player = input("Welcome to the game. What is your name?: ")
-    input(f"Hi {player}, here is the current situation. prese enter to continue through the rest of these prompts: ")
+    input(f"Hi {player}, Welcome to shipwreck survival {SHIP_EMOJI}. Your goal (as the title of the game may suggest) is to survive a shipwreck and be rescued.\n"
+    "This is indicative of earning 25 points, so the closer you are to that number, the closer you are to winning. Here’s the scenario: You are on a sinking cruise ship.\n"
+    "You just caught sight of the captain doing the cross before hopping into a specially made life raft. You run up to the upper deck and see that there are two life rafts\n"
+    "that you can choose from.  You have no information about either rafts other than the fact that though both rafts\n"
+    "should contain the materials for one to survive and be rescued within 10 days, the exact materials on the rafts vary slightly.\n"
+    "Press enter to continue through the rest of these prompts: ")
 
 
 def stop_game() -> None:
@@ -201,9 +207,10 @@ def boat1() -> None:
                         input("You use the mirror to try to reflect the sun in the direction of the boat and by some miracle the small ship on the horizon becomes bigger and bigger,\n"
                         "until it is close enough for you to board it.")
                         input("You are saved")
+                        points += 3
                         input("You will tell your accolades to family and strangers alike and sue the cruise line involved in the sinking of your vessel, gaining a fortune in the process.")
                         input("Though a pretty unfortunate event happened to you, you consider yourself a pretty lucky person to have made the right decisions to survive until you found safety.")
-                        input(f"Congratulations {player}, you earned 5 more for doing using the correct device and 3 bonus points for surviving unil rescue. You've enough points to win the game!!!!")
+                        input(f"Congratulations {player}, you earned 5 more for doing using the correct device and 3 bonus points for surviving unil rescue. You've earned enough points to win the game!!!!")
                     print(f"\n\n========Game Over=========\n\nIn your experience, you earned {points} points.")
 
 
@@ -273,18 +280,16 @@ def main() -> None:
     global points
     #present the user with three optionn
     while playing:
-        points = 0 
-        first_branch: str = input("\nThere are two empty life rafts available. You have no information about either rafts other than the fact that though both rafts\n"
-        "should contain the materials for one to survive and be rescued within 10 days, the exact materials on the rafts vary slightly.\n \n"
-        "Choose either boat 1 or boat 2 by typing “boat 1” or “boat 2”. If you do not want to continue playing the game, type “leave game”. ")
-            
+        first_branch: str = input("Choose either boat 1 or boat 2 by typing “boat 1” or “boat 2”. If you do not want to continue playing the game, type “leave game”. ")   
         first_branch = valid_word3(first_branch, "boat 1", "boat 2", "leave game")
-
+        
         if first_branch == "boat 1":
             #run boat1 (interacts directly with global point values)
+            points = 0 
             boat1()
         elif first_branch == "boat 2":
             #run boat2- shark infested waters
+            points = 0 
             points = boat2(0)
             print(f"\n\n========Game Over=========\n\nIn your experience, you earned {points} points.")
         elif first_branch == "leave game":
