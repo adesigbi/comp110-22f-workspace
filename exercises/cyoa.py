@@ -6,6 +6,7 @@ __author__ = "730572167"
 from random import randint
 points: int = 0 
 player: str = ""
+playing: bool = True
 
 
 def valid_word2(userword: str, option1: str, option2: str) -> str:
@@ -77,7 +78,9 @@ def greet() -> None:
 
 
 def stop_game() -> None:
-    print(f"Goodbye {player}. In your experience, you gathered {points} adventure points. We hope you come to play again! ")
+    global playing 
+    playing = False
+    print(f"Goodbye {player}. In your last experience, you gathered {points} adventure points. We hope you come to play again! ")
    
 
 def boat1() -> None:
@@ -89,15 +92,17 @@ def boat1() -> None:
         print(i)
     input("**Keep in mind that the tent is perfectly made for the raft, and is not capable of being used for anything else \n")
     input("\nNow before you boarded the life raft, between gently sobbing and hopping into a boat, the last man working on the ship, gave a cryptic message explaining that \n"
-    "the rafts are old so that if you were to keep all items on the ship, you would definitely drown. He said that you’d probably be safe if you only kept 5 of the items: \n")
+    "the rafts are old so that if you were to keep all items on the ship, you would definitely drown. He said that you’d probably be safe if you only kept 4 of the items: \n")
     take_from_list(item_list1)
     points += 2
     input(f"Congrats {player}, you have completed your first task, and by doing so, you have earned 2 points. Your new point total is now {points}: " )
     input("\n==========That Night==========\n")
     appropriate_materials1: bool = word_in_list("tent", item_list1)
     if appropriate_materials1 == False:
-        input("It starts drizzling when you go to sleep. You hope that it doesn’t get worse because you don’t have the materials to protect yourself from the rain. \n")
-        input(f"Uhoh {player}, the next morning you don't wake up, because in the middle of the night you died from hypothermia :(")
+        input("It starts drizzling when you go to sleep. You hope that it doesn’t get worse because you don’t have the materials to protect yourself from the rain.")
+        input("It does get worse and you are left shivering through the night. ")
+        input("Uhoh, you've died of hypothermia :( ")
+        input("You were never saved. ")
         print(f"\n\n========Game Over=========\n\nIn your experience, you earned {points} points.")
         return
     if appropriate_materials1 == True:
@@ -105,8 +110,10 @@ def boat1() -> None:
         "Do you want to protect yourself from the rain or save energy and worry about shelter tomorrow? Type 'save energy' or 'protect from rain': ")
         rain_response = valid_word2(rain_response, "save energy", "protect from rain")
         if rain_response == "save energy":
-            input("You soon hear thunderstorms. You try to sleep through the rain. \n")
-            input("Uhoh, you've died of hypothermia :(\n")
+            input("You soon hear thunderstorms. You try to sleep through the rain. ")
+            input("It does get worse and you are left shivering through the night. ")
+            input("Uhoh, you've died of hypothermia. ")
+            input("You were never saved. ")
             print(f"\n\n========Game Over=========\n\nIn your experience, you earned {points} points.")
             return
         if rain_response == "protect from rain":
@@ -147,7 +154,8 @@ def boat1() -> None:
                     input("\n=====Day 6=====\n")
                     input("You are craving something to eat again. Delirious and disappointed in your past decisions, you try catching fish. \n"
                     "In an attempt to grab a salmon with your bare hands, you fall overboard.")
-                    input("Sorry, you died from drowning")
+                    input("Sorry, you died from drowning and hunger. ")
+                    input("You were never saved.")
                     print(f"\n\n========Game Over=========\n\nIn your experience, you earned {points} points.")
                     return 
                 if word_in_list("army rations", item_list1) == True: 
@@ -155,6 +163,8 @@ def boat1() -> None:
                     "You wake in the morning, pack up your tent to conserve space, have the breakfast of chapions that is canned meats and stale bread,\n"
                     "tinker with your objects on your person to try to make tools, eat dinner a of canned beans and crackers, set up up your tent again,\n"
                     "sleep, and do the same thing over again. You have all your basic necessities covered.")
+                    points += 5
+                    input(f"\nCongradulations {player}, you had a viable food source and gain 5 more points. You have a total of {points} points. ")
                     input("\n=====Day 5=====\n")
                     input("Life isn't amazing, but it's managable. Maybe you could be a seaman forever you think. ")
                     input("\n=====Day 9=====\n")
@@ -180,7 +190,7 @@ def boat1() -> None:
                             "that you'd survive months on the atlantic scratch free. That would require some great stroke of luck. Another boat came back around on the 24th day.")
                             input("You were never saved")
                         if ending == 3:
-                            input("On the 24th day, another boat would come by, this time within yellig distance of your raft. Unfortunately, on your 23rd day you slept and walked off of the raft.\n")
+                            input("On the 24th day, another boat would come by, this time within yelling distance of your raft. Unfortunately, on your 23rd day you slept and walked off of the raft.\n")
                             input("You were never saved")
                         if ending == 4:
                             input("On day 103, you caught sight of an island. You mustered all your strength to make it to shore. And after stumbling around the sandy beach and \n"
@@ -193,29 +203,96 @@ def boat1() -> None:
                         input("You are saved")
                         input("You will tell your accolades to family and strangers alike and sue the cruise line involved in the sinking of your vessel, gaining a fortune in the process.")
                         input("Though a pretty unfortunate event happened to you, you consider yourself a pretty lucky person to have made the right decisions to survive until you found safety.")
-                        input(f"Congratulations {player}, you earned 5 more points for getting saved. Your point total now meets the threshold to win the game!!!!")
+                        input(f"Congratulations {player}, you earned 5 more for doing using the correct device and 3 bonus points for surviving unil rescue. You've enough points to win the game!!!!")
                     print(f"\n\n========Game Over=========\n\nIn your experience, you earned {points} points.")
-                    
-                        
+
+
+def boat2(points: int) -> None:
+    """Actions that happen after the user picks the second boat."""
+    item_list2: list[str] = ["pocket knife", "map of the atlantic", "compass", "fishing kit", "a bucket", "tarp and sleeping bag", "rubbing alcohol", "petroleum/oil mixture"]
+    input("\nWithout much thinking, you chose the second life raft. And by rummaging through the back of the raft, you find the following items\n")
+    for i in item_list2:
+        print(i)
+    input("**Keep in mind that petroleum/oil mixture also comes with matches. It is also not capable of being used for cooking or powering the raft. \n")
+    input("\nNow before you boarded the life raft, between gently sobbing and hopping into a boat, the last man working on the ship, gave a cryptic message explaining that \n"
+    "the rafts are old so that if you were to keep all items on the ship, you would definitely drown. He said that you’d probably be safe if you only kept 4 of the items. ")
+    take_from_list(item_list2)
+    points += 2
+    input(f"Congrats {player}, you have completed your first task, and by doing so, you have earned 2 points. Your new point total is now {points}\n")
+    input("Uhoh it looks like raft 2 contains packs of uncooked stakes below the deck. You become aware of this fact when sharks start to circle around you. ")
+    input("You try all the tricks in the book. You play dead, you make loud noises, you try to move away without making much movement,\n"
+    "but the sharks don’t leave. Infact, it seems that even more are coming. ")
+    input("A single shark in the crowd leads the force. And as it approaches, you close your eyes and hope for the best. ")
+    shark_survival: int = randint(1, 100)
+    previous_score: int = points
+    for i in item_list2:
+        if (i == "fishing kit") or (i == "a bucket") or (i == "tarp and sleeping bag") or (i == "petroleum/oil mixture"):
+            points += 5
+    shark_msg: str = ""
+    if word_in_list("tarp and sleeping bag", item_list2) == False:
+        shark_msg += "Hypothermia, because you didn’t have anything to protect you from the elements when it"
+    if word_in_list("a bucket", item_list2) == False:
+        shark_msg += "\nDehydration, because you didn’t have any materials to gather water when it rained"
+    if word_in_list("fishing kit", item_list2) == False:
+        shark_msg += "\nStarvation, because you didn’t have any device to obtain food" 
+    if word_in_list("petroleum/oil mixture", item_list2) == False:
+        shark_msg += "\nLack of rescue, because you didn’t have anything that could be used to signal to other ships from far away"
+    if shark_survival == 1:
+        input(f"\nCongratulations {player}. You miraculously survived the attack by some combination of nose punches and eye gauges. That truly had a 1 in 100 chance of happening!!!")
+        if points != 22:
+            input("Unfortunately, though, you didn’t have the proper materials to survive and be rescued.\n"
+            "You died due to one or more of the following...")
+            input(shark_msg + " ")
+            input(f"This makes your point total {points} (with +5 points for every correct item and action in survival and rescue added on to your previous score of {previous_score})")
+        if points == 22:
+            points += 3
+            input("You also had the right materials to survive and be rescued. ")
+            input("First, you made shelter with your tarp and sleeping bag protecting you from the rain. ")
+            input("You then started fishing and began to stave off dehydration with rain water you gathered from your bucket and turtle blood you drink from (well) turtles.")
+            input("And lastly, you signaled for help with your petroleum oil mixture. ")
+            input("\n======Some time in the future=======\n")
+            input("You went down in history with your survival, signed a book deal, and later turned your experience into a movie called “Jaws, but not that one”.")
+            input(f"You gained {points} from having the materials to complete all 4 basics of survival: at sea, shelter (to prevent hypothermia), water, food, and rescue.\n"
+            "For each of these actions you received 5 points and you gained 3 more bonus points for surviving to tell the tail.\n You win!!!!!")
+    if shark_survival != 1:
+        input("\nYou died of a shark attack. ")
+        if points != 22:
+            input("But hey, you didn’t have the proper materials to survive until rescue anyways.\n"
+            "You would have died due to…")
+            input(shark_msg + " ")
+            input(f"This makes your point total {points} (with +5 points for every correct item and action in survival and rescue added on to your previous score of {previous_score})")
+        if points == 22:
+            input("But at least you had the right idea, because all of the items you kept were indicative of your success on the waters. ")
+            input(f"This makes your point total {points} (with +5 points for every correct item and action in survival and rescue added on to your previous score of {previous_score}).\n"
+            "You lost, but you were only 3 points away from winning the game. All you had to do was beat one in a hundred.")
+    return points
+ 
+
 def main() -> None:
     greet()
-    #present the user with three options 
-    first_branch: str = input("\nThere are two empty life rafts available. You have no information about either rafts other than the fact that though both rafts\n"
-    "should contain the materials for one to survive and be rescued within 10 days, the exact materials on the rafts vary slightly.\n \n"
-    "Choose either boat 1 or boat 2 by typing “boat 1” or “boat 2”. If you do not want to continue playing the game, type “leave game”: ")
-        
-    first_branch = valid_word3(first_branch, "boat 1", "boat 2", "leave game")
-    if first_branch == "boat 1":
-        #run boat1 (interacts directly with global point values)
-        boat1()
-    elif first_branch == "boat 2":
-        #run day one dumb decision
-        print("second branch breached") #argument includes the current points your working with: 0, when dies, include an emoji appriate for the death(starvation, hypothermia, dehydration, drowning, shark attack)
-    elif first_branch == "leave game":
-        #stop the program, summed adventure points
-        stop_game()
-    print("End of loop")
-    
+    global points
+    #present the user with three optionn
+    while playing:
+        points = 0 
+        first_branch: str = input("\nThere are two empty life rafts available. You have no information about either rafts other than the fact that though both rafts\n"
+        "should contain the materials for one to survive and be rescued within 10 days, the exact materials on the rafts vary slightly.\n \n"
+        "Choose either boat 1 or boat 2 by typing “boat 1” or “boat 2”. If you do not want to continue playing the game, type “leave game”. ")
+            
+        first_branch = valid_word3(first_branch, "boat 1", "boat 2", "leave game")
+
+        if first_branch == "boat 1":
+            #run boat1 (interacts directly with global point values)
+            boat1()
+        elif first_branch == "boat 2":
+            #run boat2- shark infested waters
+            points = boat2(0)
+            print(f"\n\n========Game Over=========\n\nIn your experience, you earned {points} points.")
+        elif first_branch == "leave game":
+            #stop the program, summed adventure points
+            stop_game()
+            return
+        input("\nDo you want to play again? Do you want to exit? Press enter to continue either way. ")
+
 
 if __name__ == "__main__":
     main()
