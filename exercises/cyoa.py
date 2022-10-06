@@ -47,7 +47,7 @@ def index_finder(word: str, list: list[str]) -> int:
         if word == list[i]:
             return i
         i += 1
-
+    return i
 
 def take_from_list(item_list: list[str]) -> None:
     """Prompts the player to take 4 items from a list."""
@@ -220,7 +220,7 @@ def boat1() -> None:
                     print(f"\n\n========Game Over=========\n\nIn your experience, you earned {points} points.")
 
 
-def boat2(points: int) -> None:
+def boat2(points: int) -> int:
     """Actions that happen after the user picks the second boat."""
     item_list2: list[str] = ["pocket knife", "map of the atlantic", "compass", "fishing kit", "a bucket", "tarp and sleeping bag", "rubbing alcohol", "petroleum/oil mixture"]
     input("\nWithout much thinking, you chose the second life raft. And by rummaging through the back of the raft, you find the following items\n")
