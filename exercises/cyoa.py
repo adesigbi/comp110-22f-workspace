@@ -49,6 +49,7 @@ def index_finder(word: str, list: list[str]) -> int:
         i += 1
     return i
 
+
 def take_from_list(item_list: list[str]) -> None:
     """Prompts the player to take 4 items from a list."""
     popped_item1: str = input("Pick the first of four objects you want to get rid of: ")
