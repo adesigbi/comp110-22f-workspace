@@ -80,7 +80,7 @@ def greet() -> None:
           "You just caught sight of the captain doing the cross before hopping into a specially made life raft. You run up to the upper deck and see that there are two life rafts\n"
           "that you can choose from. You have no information about either rafts other than the fact that though both rafts\n"
           "should contain the materials for one to survive and be rescued within 10 days, the exact materials on the rafts vary slightly.\n"
-          "Press enter to continue through the rest of these prompts: ")
+          "Press enter to continue through the rest of these prompts. ")
 
 
 def stop_game() -> None:
