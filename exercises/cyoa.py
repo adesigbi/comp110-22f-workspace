@@ -1,7 +1,7 @@
 """A ship wreck choose your own adventure game."""
 
 
-__author__ :str = "730572167"
+__author__ = "730572167"
 
 
 from random import randint
@@ -237,7 +237,6 @@ def boat2(points: int) -> None:
           "but the sharks don’t leave. In fact, it seems that even more are coming. ")
     input("A single shark in the crowd leads the force. And as it approaches, you close your eyes and hope for the best. ")
     shark_survival: int = randint(1, 100)
-    shark_survival = 1
     previous_score: int = points
     for i in item_list2:
         if (i == "fishing kit") or (i == "a bucket") or (i == "tarp and sleeping bag") or (i == "petroleum/oil mixture"):
