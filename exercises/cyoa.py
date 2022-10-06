@@ -1,7 +1,8 @@
 """A ship wreck choose your own adventure game."""
 
 
-__author__ = "730572167"
+__author__ :str = "730572167"
+
 
 from random import randint
 points: int = 0 
