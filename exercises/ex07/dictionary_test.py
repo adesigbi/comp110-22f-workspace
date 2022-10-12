@@ -25,6 +25,6 @@ def test_favorite_color() -> None:
 
 def test_count() -> None:
     """Sees if the count function is working."""
-    assert count(["s", "l", "s", "d", "n", "n", "n", "d"]) == {"s":  2, "l": 1, "d": 2, "n": 3}
-    assert count(["s"]) == {"s" : 1}
+    assert count(["s", "l", "s", "d", "n", "n", "n", "d"]) == {"s": 2, "l": 1, "d": 2, "n": 3}
+    assert count(["s"]) == {"s": 1}
     assert count(["n", "n", "n", "n", "n", "n", "l", "n"]) == {"n": 7, "l": 1}
