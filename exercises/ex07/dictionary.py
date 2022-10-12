@@ -1,7 +1,8 @@
 """Some practice with dictionaries."""
 
 
-__author__: "730572167"
+__author__ = "730572167"
+
 
 def invert(og_dict: dict[str, str]) -> dict[str, str]:
     """Inverts values and keys in a dictionary."""
@@ -48,6 +49,7 @@ def favorite_color(fav_color_dict: dict[str, str]) -> str:
 
 
 def count(old_list: list[str]) -> dict[str, int]:
+    """Makes a dict from a list where keys are list items and values are incedence of each list item."""
     new_dict: dict[str, int] = {}
     for item in old_list:
         # for every item in the list, add it as a key in the new dict
@@ -57,10 +59,3 @@ def count(old_list: list[str]) -> dict[str, int]:
         if item not in new_dict:
             new_dict[item] = 1
     return new_dict
-
-       
-        
-
-
-    
-
