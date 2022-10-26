@@ -19,7 +19,7 @@ def test_invert() -> None:
 def test_favorite_color() -> None:
     """Sees if the test_favorite_color function is working."""
     assert favorite_color({"Marc": "yellow", "Ezri": "blue", "Kris": "blue"}) == "blue"
-    assert favorite_color({"John": "green", "Hank": "green", "lauri": "pink", "tommy": "pink", "Mark": "pink"})
+    assert favorite_color({"John": "green", "Hank": "green", "lauri": "pink", "tommy": "pink", "Mark": "pink"}) == "pink"
     assert favorite_color({"Hanna": "pink", "Joana": "yellow", "Cam": "green"}) == "pink"
 
 
