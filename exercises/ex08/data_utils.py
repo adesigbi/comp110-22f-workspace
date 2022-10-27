@@ -6,7 +6,8 @@ __author__ = "730572167"
 
 from csv import DictReader
 
-def read_csv_rows(csv_file_path: str)-> list[dict[str, str]]:
+
+def read_csv_rows(csv_file_path: str) -> list[dict[str, str]]:
     """Reads the rows of a csv into a list of dicts table."""
     result: list[dict[str, str]] = []
     file_handle = open(csv_file_path, "r", encoding="utf8")
@@ -29,7 +30,7 @@ def column_values(list_of_dicts_table: list[dict[str, str]], row_name: str) -> l
 
 
 def columnar(list_of_dicts_table: list[dict[str, str]]) -> dict[str, list[str]]:
-    """Turns row oriented table into column oritened table"""
+    """Turns row oriented table into column oritened table."""
     result: dict[str, list[str]] = {}
     first_row: dict[str, str] = list_of_dicts_table[0]
     for key in first_row:
@@ -43,8 +44,12 @@ def head(column_table: dict[str, list[str]], n: int) -> dict[str, list[str]]:
     for key in column_table:
         new_column_list: list[str] = []
         old_column_list: list[str] = column_table[key]
-        for i in range(n):
-            new_column_list.append(old_column_list[i])
+        if n >= len(column_table[key]):
+            for item in old_column_list:
+                new_column_list.append(item)
+        else:
+            for i in range(n):
+                new_column_list.append(old_column_list[i])
         result[key] = new_column_list
     return result
 
