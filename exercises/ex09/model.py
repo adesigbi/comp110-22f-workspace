@@ -34,8 +34,6 @@ class Point:
         distance_between_points: float = sqrt((x2 - x1)**2 + (y2 - y1)**2)
         return distance_between_points
 
-
-
 class Cell:
     """An individual subject in the simulation."""
     location: Point
@@ -52,15 +50,12 @@ class Cell:
     # the result of adding the self object's location with its
     # direction. Hint: Look at the add method.
     def tick(self) -> None:
+        """Updates the location and immune status."""
         self.location = self.location.add(self.direction)
         if self.is_infected():
             self.sickness += 1
         if self.sickness > constants.RECOVERY_PERIOD:
             self.immunize()
-
-    def color(self) -> str:
-        """Return the color representation of a cell."""
-        return "black"
     
     def contract_disease(self) -> None:
         """Returns the INFECTED constant to the 'sickness' atribute."""
@@ -85,14 +80,14 @@ class Cell:
             return False
 
     def is_immune(self) -> bool:
-        """Returns True if a cell is immune and false if it isn't"""
+        """Returns True if a cell is immune and false if it isn't."""
         if self.sickness == constants.IMMUNE:
             return True
         else: 
             return False
 
     def color(self) -> str:
-        """Returns a color string that differentiates between infected and vulnrable"""
+        """Returns a color string that differentiates between infected and vulnrable."""
         if self.is_vulnerable():
             return "gray"
         elif self.is_infected():
@@ -109,8 +104,6 @@ class Cell:
         elif another_cell.is_infected():
             self.contract_disease()
 
-
-
 class Model:
     """The state of the simulation."""
 
@@ -120,7 +113,7 @@ class Model:
     def __init__(self, cells: int, speed: float, infected_cells: int, immune_cells: int = 0):
         """Initialize the cells with random locations and directions."""
         self.population = []
-        if infected_cells >= cells:
+        if infected_cells >= cells or infected_cells <= 0:
             raise ValueError
         if immune_cells >= cells:
             raise ValueError
@@ -142,7 +135,6 @@ class Model:
             self.population.append(cell)
             cell.immunize()            
 
-    
     def tick(self) -> None:
         """Update the state of the simulation by one time step."""
         self.time += 1
@@ -178,11 +170,6 @@ class Model:
         if cell.location.y > constants.MAX_Y:
             cell.location.y = constants.MAX_Y
             cell.direction.y *= -1.0
-
-        
-    def is_complete(self) -> bool:
-        """Method to indicate when the simulation is complete."""
-        return False
 
     def check_contacts(self) -> None:
         """Sees if two cells come in contact with eachother, and infecects a cell if that is true."""
