@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 from random import random
-from exercises.ex09 import constants
+import constants
 from math import sin, cos, pi, sqrt
 
 
@@ -98,11 +98,9 @@ class Cell:
 
     def contact_with(self, another_cell: Cell) -> None: 
         """Infects a vulnrable cell if comes in contact with infected cell."""
-        if self.is_infected() and another_cell.is_infected():
-            return
-        elif self.is_infected() and another_cell.is_vulnerable():
+        if self.is_infected() and another_cell.is_vulnerable():
             another_cell.contract_disease()
-        elif another_cell.is_infected() and self.is_vulnerable():
+        if another_cell.is_infected() and self.is_vulnerable():
             self.contract_disease()
 
 
