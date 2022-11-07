@@ -34,11 +34,12 @@ class Point:
         distance_between_points: float = sqrt((x2 - x1)**2 + (y2 - y1)**2)
         return distance_between_points
 
+
 class Cell:
     """An individual subject in the simulation."""
     location: Point
     direction: Point
-    sickness: int = 0
+    sickness: int = constants.VULNERABLE
 
     def __init__(self, location: Point, direction: Point):
         """Construct a cell with its location and direction."""
@@ -99,10 +100,11 @@ class Cell:
         """Infects a vulnrable cell if comes in contact with infected cell."""
         if self.is_infected() and another_cell.is_infected():
             return
-        elif self.is_infected():
+        elif self.is_infected() and another_cell.is_vulnerable():
             another_cell.contract_disease()
-        elif another_cell.is_infected():
+        elif another_cell.is_infected() and self.is_vulnerable():
             self.contract_disease()
+
 
 class Model:
     """The state of the simulation."""
@@ -115,7 +117,7 @@ class Model:
         self.population = []
         if infected_cells >= cells or infected_cells <= 0:
             raise ValueError
-        if immune_cells >= cells:
+        if immune_cells >= cells or immune_cells < 0:
             raise ValueError
         for _ in range(cells - infected_cells - immune_cells):
             start_location: Point = self.random_location()
