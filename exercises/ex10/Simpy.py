@@ -6,7 +6,9 @@ from typing import Union
 
 __author__ = "730572167"
 
+
 class Simpy:
+    """Simpy class that has an attribute 'values' which is a list of floats."""
     values: list[float]
 
     def __init__(self, values: list[float]):
@@ -17,7 +19,7 @@ class Simpy:
         """Gives a human representation of a Simpy object."""
         return f"Simpy({self.values})"
 
-    def fill(self, number: int, times: int) -> None:
+    def fill(self, number: float, times: int) -> None:
         """Fills a Simpy's values with a specifc number of repeating values."""
         new_list: list[int] = []
         for _ in range(times):
